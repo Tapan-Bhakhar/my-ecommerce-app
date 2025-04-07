@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Button, CardActions } from '@mui/material';
+import { BASE_URL } from '@/services/api';
+
 
 interface ProductProps {
   product: {
@@ -22,11 +24,11 @@ interface ProductProps {
 const ProductCard: React.FC<ProductProps> = ({ product, onAddToCart }) => {
   return (
     <Card sx={{ maxWidth: 300, borderRadius: 3, boxShadow: 3 }}>
-        
+
       <CardMedia
         component="img"
         height="180"
-        image={product.productImage}
+        image={`${BASE_URL}/${product.productImage}`}
         alt={product.productName}
       />
       <CardContent>
@@ -39,9 +41,9 @@ const ProductCard: React.FC<ProductProps> = ({ product, onAddToCart }) => {
           ₹ {product.productPrice}
         </Typography>
 
-        <Typography variant="caption" color="text.secondary">
+        {/* <Typography variant="caption" color="text.secondary">
           Category: {product.categoryId?.categoryName}
-        </Typography>
+        </Typography> */}
 
       </CardContent>
 

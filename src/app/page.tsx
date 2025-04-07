@@ -1,10 +1,60 @@
+'use client';
 
+import React, { useEffect, useState } from 'react';
+import { Grid, Container, Typography } from '@mui/material';
+import ProductCard from '@/component/ProductCard';
+import api from '@/services/api';
 
-export default function Home() {
+interface Product {
+  _id: string;
+  productName: string;
+  productImage: string;
+  productPrice: number;
+  productURL: string;
+  productDescription: string;
+  categoryId: {
+    _id: string;
+    categoryName: string;
+  };
+}
+
+export default function HomePage() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get('/get-products');
+      console.log("Fetched Products:", response);
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleAddToCart = (productId: string) => {
+    console.log('Add to cart:', productId);
+    // Later: Dispatch Redux action here
+  };
+
+  console.log("Products:", products);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-4xl font-bold">Hello World</h1>
-      <p className="mt-4 text-lg">Welcome to my Next.js app!</p>
-    </main>
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        All Products
+      </Typography>
+      <Grid container spacing={3}>
+        {products && products.map((product) => (
+        
+          <div key={product._id} style={{ marginBottom: '20px' }}>
+            <ProductCard product={product} onAddToCart={handleAddToCart} />
+            </div>
+        ))}
+      </Grid>
+    </Container>
   );
 }
