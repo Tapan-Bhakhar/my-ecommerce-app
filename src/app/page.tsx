@@ -46,10 +46,10 @@ export default function HomePage() {
       </Typography>
       <Grid container spacing={3}>
         {products && products.map((product) => (
-        
+
           <div key={product._id} style={{ marginBottom: '20px' }}>
             <ProductCard product={product} />
-            </div>
+          </div>
         ))}
       </Grid>
     </Container>
