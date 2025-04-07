@@ -25,7 +25,6 @@ export default function HomePage() {
     const fetchProducts = async () => {
       try {
         const response = await api.get('/get-products');
-      console.log("Fetched Products:", response);
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -40,8 +39,6 @@ export default function HomePage() {
     // Later: Dispatch Redux action here
   };
 
-  console.log("Products:", products);
-
   return (
     <Container sx={{ py: 4 }}>
       <Typography variant="h4" gutterBottom>
@@ -51,7 +48,7 @@ export default function HomePage() {
         {products && products.map((product) => (
         
           <div key={product._id} style={{ marginBottom: '20px' }}>
-            <ProductCard product={product} onAddToCart={handleAddToCart} />
+            <ProductCard product={product} />
             </div>
         ))}
       </Grid>
