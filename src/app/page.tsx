@@ -34,15 +34,10 @@ export default function HomePage() {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (productId: string) => {
-    console.log('Add to cart:', productId);
-    // Later: Dispatch Redux action here
-  };
-
   return (
     <Container sx={{ py: 4 }}>
       <Typography variant="h4" gutterBottom>
-        All Products
+        Welcome to MyShop
       </Typography>
       <Grid container spacing={3}>
         {products && products.map((product) => (
