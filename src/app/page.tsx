@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Container, Typography } from '@mui/material';
 import ProductCard from '@/component/ProductCard';
 import api from '@/services/api';
+import CartItemCard from '@/component/CartItemCard';
 
 interface Product {
   _id: string;
@@ -44,6 +45,8 @@ export default function HomePage() {
           </div>
         ))}
       </Grid>
+
+      {/* <CartItemCard item={products} showActions={false} /> */}
     </Container>
   );
 }
