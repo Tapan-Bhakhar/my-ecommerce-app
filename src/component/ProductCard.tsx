@@ -14,10 +14,7 @@ interface ProductProps {
     productPrice: number;
     productURL: string;
     productDescription: string;
-    categoryId: {
-      _id: string;
-      categoryName: string;
-    };
+    categoryId: string;
   };
 }
 
@@ -50,9 +47,9 @@ const ProductCard: React.FC<ProductProps> = ({ product }) => {
           ₹ {product.productPrice}
         </Typography>
 
-        {/* <Typography variant="caption" color="text.secondary">
-          Category: {product.categoryId?.categoryName}
-        </Typography> */}
+        <Typography variant="caption" color="text.secondary">
+          Category: {product.categoryId}
+        </Typography>
       </CardContent>
 
       <CardActions>

@@ -1,17 +1,14 @@
-'use client'
-import { ReactNode } from 'react'
-import { Provider } from 'react-redux'
-import  store  from '@/redux/store'
-import Navbar from '@/component/Navbar';
+import { Providers } from '@/redux/provider' 
+import Navbar from '@/component/Navbar'
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Provider store={store}>
-        <Navbar />
+        <Providers>
+          <Navbar />
           {children}
-        </Provider>
+        </Providers>
       </body>
     </html>
   )
