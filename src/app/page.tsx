@@ -10,6 +10,9 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import IconButton from '@mui/material/IconButton';
 
+// Import slider data from a separate file
+import { sliderImages } from '@/data/sliderData';
+
 // Styled components for the slider
 const SliderContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -50,14 +53,8 @@ const SliderDots = styled(Box)(({ theme }) => ({
 }));
 
 export default function HomePage() {
-  // Images for the slider (placeholder URLs)
-  const images = [
-    { url: '/api/placeholder/1200/400', alt: 'Featured Products', title: 'New Arrivals', subtitle: 'Check out our latest collection' },
-    { url: '/api/placeholder/1200/400', alt: 'Special Offers', title: 'Summer Sale', subtitle: 'Get up to 50% off on selected items' },
-    { url: '/api/placeholder/1200/400', alt: 'Exclusive Deals', title: 'Member Exclusive', subtitle: 'Join our loyalty program for special deals' },
-  ];
-
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [images, setImages] = useState(sliderImages);
 
   // Function to go to the next slide
   const nextSlide = () => {
@@ -105,7 +102,7 @@ export default function HomePage() {
               {image.subtitle}
             </Typography>
             <Button variant="contained" color="primary" sx={{ mt: 3 }}>
-              Shop Now
+              {image.buttonText || "Shop Now"}
             </Button>
           </SliderImage>
         ))}
@@ -126,7 +123,7 @@ export default function HomePage() {
           </IconButton>
         </SliderControls>
 
-        {/* Slider Dots - Using Box with conditional styling instead of custom styled component */}
+        {/* Slider Dots */}
         <SliderDots>
           {images.map((_, index) => (
             <Box

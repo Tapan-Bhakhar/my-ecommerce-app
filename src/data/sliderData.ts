@@ -2,7 +2,7 @@
 
 export const sliderImages = [
     { 
-      url: '/api/placeholder/1200/400', // Replace with your actual image URL
+      url: '/images/1.webp', // Replace with your actual image URL
       alt: 'Featured Products', 
       title: 'New Arrivals', 
       subtitle: 'Check out our latest collection',
