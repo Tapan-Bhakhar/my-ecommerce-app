@@ -13,7 +13,10 @@ interface Product {
   productPrice: number;
   productURL: string;
   productDescription: string;
-  categoryId: string;
+  categoryId: {
+    _id: string;
+    categoryName: string;
+  }
 }
 
 export default function HomePage() {

@@ -3,6 +3,7 @@
 import api, { BASE_URL } from "@/services/api";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Container, Grid } from "@mui/system";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 interface Category {
@@ -61,6 +62,8 @@ const CategoryPage = () => {
                             <Typography variant="h6">{cat.categoryName}</Typography>
                             <Typography variant="body2">{cat.categoryDescription}</Typography>
                         </CardContent>
+                      
+                        <Link href={`/products?cid=${cat._id}`} style={{ textDecoration: 'none' }} > bddgfis</Link>
 
                         </Card>
                     </div>
