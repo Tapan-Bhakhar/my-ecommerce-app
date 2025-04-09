@@ -21,8 +21,9 @@ interface Product {
 
 export default function HomePage() {
     const [products, setProducts] = useState<Product[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
     const searchParams = useSearchParams();
-    
     const categoryId = searchParams.get('cid');
     console.log('categoryId:', categoryId);
     useEffect(() => {
@@ -38,13 +39,22 @@ export default function HomePage() {
         fetchProducts();
     }, []);
 
+    useEffect(() => {
+        if (categoryId) {
+            const filtered = products.filter(product => product.categoryId._id === categoryId);
+            setFilteredProducts(filtered);
+        } else {
+            setFilteredProducts(products);
+        }
+    }, [products, categoryId]);
+
     return (
         <Container sx={{ py: 4 }}>
             <Typography variant="h4" gutterBottom>
                 Welcome to MyShop
             </Typography>
             <Grid container spacing={3}>
-                {products && products.filter((product) => categoryId ? product.categoryId._id == categoryId : product).map((product) => (
+                {filteredProducts && filteredProducts.map((product) => (
                     <div key={product._id} style={{ marginBottom: '20px' }}>
                         <ProductCard product={product} />
                     </div>
