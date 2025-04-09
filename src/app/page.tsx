@@ -23,12 +23,12 @@ export default function HomePage() {
     const fetchProducts = async () => {
       try {
         const response = await api.get('/get-products');
-        setProducts(response.data);
+        // console.log('Products:', response);
+        setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
-
     fetchProducts();
   }, []);
 
