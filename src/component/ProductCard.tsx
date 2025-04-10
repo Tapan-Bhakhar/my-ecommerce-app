@@ -6,6 +6,7 @@ import { BASE_URL } from '@/services/api';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/cartSlice';
 import { Box } from '@mui/system';
+import WishlistButton from '@/app/wishlist/WishlistButton';
 
 interface ProductProps {
   product: {
@@ -55,11 +56,29 @@ const ProductCard: React.FC<ProductProps> = ({ product }) => {
           borderRadius: 3,
           boxShadow: 3,
           display: 'flex',
+          position: 'relative',
           flexDirection: 'column',
           justifyContent: 'space-between',
           margin: '0',
         }}
       >
+        <div style={{
+          position: 'absolute',
+          top: 105,
+          right: 5,
+          backgroundColor: 'rgba(255, 255, 255, 0.2)', // translucent background
+          backdropFilter: 'blur(5px)', // actual blur effect
+          WebkitBackdropFilter: 'blur(5px)', // for Safari
+          borderRadius: '20%',
+          height: '30px',
+          width: '30px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+
+          <WishlistButton productId={product._id} />
+        </div>
         <CardMedia
           component="img"
           image={`${BASE_URL}/${product.productImage}`}
