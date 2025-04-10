@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  AppBar, 
-  Toolbar, 
-  Typography, 
-  IconButton, 
-  Badge, 
-  Button, 
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Badge,
+  Button,
   Box,
   InputBase,
   Menu,
@@ -59,11 +59,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '25ch',
+    },
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
+      width: '35ch',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '91.4ch',
     },
   },
 }));
+
+
+
 
 // Add a toolbar component to provide spacing below the fixed navbar
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
@@ -71,11 +80,13 @@ const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 const Navbar = () => {
   const cartItems = useSelector((state: any) => state.cart.items);
   const totalItems = cartItems.reduce((acc: number, item: CartItem) => acc + item.quantity, 0);
-  
+  const [ searchString, setSearchString ] = useState('');
+  console.log("Search String", searchString);
+
   // State for category dropdown
   const [categoryAnchorEl, setCategoryAnchorEl] = useState<null | HTMLElement>(null);
   const [userAnchorEl, setUserAnchorEl] = useState<null | HTMLElement>(null);
-  
+
   const handleCategoryMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setCategoryAnchorEl(event.currentTarget);
   };
@@ -126,9 +137,12 @@ const Navbar = () => {
             <MenuItem onClick={handleCategoryMenuClose}>All Categories</MenuItem>
           </Menu> */}
 
-<Link href="/categories" passHref>
-              <Button sx={{ color: '#fff' }}>CATEGORIES</Button>
-            </Link>
+          <Link href="/categories" passHref>
+            <Button sx={{ color: '#fff' }}>CATEGORIES</Button>
+          </Link>
+
+
+
 
           {/* Search Bar */}
           <Search sx={{ flexGrow: 1 }}>
@@ -138,8 +152,13 @@ const Navbar = () => {
             <StyledInputBase
               placeholder="Search products..."
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e) => setSearchString(e.target.value)}
             />
           </Search>
+
+
+
+
 
           {/* Navigation Links */}
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -169,7 +188,7 @@ const Navbar = () => {
           </IconButton>
 
           {/* User Account */}
-          <IconButton 
+          <IconButton
             color="inherit"
             onClick={handleUserMenuOpen}
           >
