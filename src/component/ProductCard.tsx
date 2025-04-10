@@ -62,13 +62,18 @@ const ProductCard: React.FC<ProductProps> = ({ product }) => {
       >
         <CardMedia
           component="img"
-          height="180"
           image={`${BASE_URL}/${product.productImage}`}
           alt={product.productName}
+          sx={{
+            height: '150px',
+            width: '100%',
+            objectFit: 'fill', // crop and fill the space
+            overflow: 'hidden',
+            display: 'block'
+          }}
         />
+
         <CardContent>
-
-
 
           <Typography
             gutterBottom
@@ -108,9 +113,6 @@ const ProductCard: React.FC<ProductProps> = ({ product }) => {
         </CardActions>
       </Card>
     </Box>
-
-
-
 
   );
 };

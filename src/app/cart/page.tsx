@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { Container, Typography, Grid, Box, Button, Divider } from '@mui/material';
 import CartItemCard from '@/component/CartItemCard';
+import ProductCard from '@/component/ProductCard';
+
+
 
 export default function CartPage() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -22,17 +25,23 @@ export default function CartPage() {
       ) : (
         <>
           <Grid container spacing={3}>
-            {cartItems.map((item) => (
-              <div key={item._id}
-              style={{
-                boxSizing: 'border-box',
-                padding: '8px',
-                // width: '100%', 
-              }}>
+            {/* {cartItems.map((item) => (
+              <div key={item._id}>
                 <CartItemCard item={item} />
+              </div>
+            ))} */}
+
+            {cartItems && cartItems.map((item) => (
+              <div key={item._id} style={{ marginBottom: '20px' }}>
+                  <CartItemCard item={item} />
               </div>
             ))}
           </Grid>
+
+
+
+
+
 
           <Divider sx={{ my: 2, borderColor: 'grey.400' }} />
 

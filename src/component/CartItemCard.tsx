@@ -49,23 +49,40 @@ export default function CartItemCard({ item, showActions = true }: CartItemCardP
 
   return (
     <Card
-    sx={{
-      width: 200,
-      height: 300,
-      borderRadius: 3,
-      boxShadow: 3,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      margin: '0',
-    }}>
-      <CardMedia
-        component="img"
-        image={`${BASE_URL}/${item.productImage}`}
-        alt={item.productName}
-      />
+      sx={{
+        width: 200,
+        height: 345,
+        borderRadius: 3,
+        boxShadow: 3,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        margin: '0',
+      }}
+    >
+
+<CardMedia
+  component="img"
+  image={`${BASE_URL}/${item.productImage}`}
+  alt={item.productName}
+  sx={{
+    height: '150px',
+    width: '100%',
+    objectFit: 'fill', // crop and fill the space
+    overflow: 'hidden',
+    display: 'block'
+  }}
+/>
+
+
+
+
+
+
       <CardContent>
         <Typography variant="h6">{item.productName}</Typography>
+
+
         <Typography color="text.secondary">Price: ₹{item.productPrice}</Typography>
 
         <Box display="flex" alignItems="center" mt={1}>
