@@ -37,36 +37,46 @@ const CategoryPage = () => {
 
     return (
         <Container sx={{ mt: 4 }}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom style={{ marginBottom: '20px'}}>
                 📂 All Categories
             </Typography>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 {categories && categories.map((cat) => (
-                    <div
+                    <Link
+                        href={`/products?cid=${cat._id}`}
                         key={cat._id}
                         style={{
-                            boxSizing: 'border-box',
-                            padding: '16px',
-                            width: getResponsiveWidth(),
+                            textDecoration: 'none',
+                            color: 'inherit',
+                            width: '31%',
+                            // width: getResponsiveWidth(),
+
+                            marginBottom: '10px',
                         }}
                     >
-                        <Card>
+                        <Card
+                            sx={{
+                                transition: 'transform 0.2s ease-in-out',
+                                '&:hover': {
+                                    transform: 'scale(1.03)',
+                                    boxShadow: 6,
+                                },
+                            }}
+                        >
                             <CardMedia
-                            component="img"
-                            height="180"
-                            image={`${BASE_URL}/${cat.categoryImage}`}
-                            alt={cat.categoryName}
+                                component="img"
+                                height="180"
+                                image={`${BASE_URL}/${cat.categoryImage}`}
+                                alt={cat.categoryName}
                             />
-
-                        <CardContent>
-                            <Typography variant="h6">{cat.categoryName}</Typography>
-                            <Typography variant="body2">{cat.categoryDescription}</Typography>
-                        </CardContent>
-                      
-                        <Link href={`/products?cid=${cat._id}`} style={{ textDecoration: 'none' }} > bddgfis</Link>
-
+                            <CardContent>
+                                <Typography variant="h6">{cat.categoryName}</Typography>
+                                <Typography variant="body2">{cat.categoryDescription}</Typography>
+                            </CardContent>
                         </Card>
-                    </div>
+                    </Link>
+
+
                 ))}
             </Grid>
         </Container>
