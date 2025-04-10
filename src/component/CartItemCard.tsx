@@ -48,10 +48,19 @@ export default function CartItemCard({ item, showActions = true }: CartItemCardP
   };
 
   return (
-    <Card>
+    <Card
+    sx={{
+      width: 200,
+      height: 300,
+      borderRadius: 3,
+      boxShadow: 3,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      margin: '0',
+    }}>
       <CardMedia
         component="img"
-        height="180"
         image={`${BASE_URL}/${item.productImage}`}
         alt={item.productName}
       />
