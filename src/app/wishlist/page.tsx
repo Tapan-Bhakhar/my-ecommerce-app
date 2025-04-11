@@ -57,36 +57,49 @@
 import { useEffect, useState } from 'react';
 import ProductCard from '@/component/ProductCard';
 import api from '@/services/api';
+import { Container } from '@mui/system';
+import { Typography } from '@mui/material';
 
 
 
 const WishlistPage = () => {
   const [wishlistProducts, setWishlistProducts] = useState([]);
 
-  useEffect(() => {
+  const fetchWishlistProducts = async () => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    const res = await api.get("/get-products");
+    const filtered = res.data.products.filter((p: any) =>
+      wishlist.includes(p._id)
+    );
+    setWishlistProducts(filtered);
+  };
 
-    const fetchWishlistProducts = async () => {
-      const res = await api.get("/get-products"); // or your actual endpoint
-      const filtered = res.data.products.filter((p: any) =>
-        wishlist.includes(p._id)
-      );
-      setWishlistProducts(filtered);
-    };
-
+  useEffect(() => {
     fetchWishlistProducts();
   }, []);
 
   return (
-    <div>
-      <h2>Your Wishlist</h2>
+    <Container sx={{ mt: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        🤍 Your Wishlist
+      </Typography>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {wishlistProducts.map((product: any) => (
-            console.log(product),
-          <ProductCard key={product._id} product={product} />
-        ))}
+        {wishlistProducts.length === 0 ? (
+          <Typography>No items in wishlist.</Typography>
+        ) : (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+            {wishlistProducts.map((product: any) => (
+              console.log(product),
+              <ProductCard
+                key={product._id}
+                product={product}
+                refresh={fetchWishlistProducts} />
+            ))}
+          </div>
+        )}
+
       </div>
-    </div>
+    </Container>
   );
 };
 

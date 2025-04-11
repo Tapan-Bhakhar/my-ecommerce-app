@@ -21,9 +21,10 @@ interface ProductProps {
       categoryName: string;
     }
   };
+  refresh?: () => void;
 }
 
-const ProductCard: React.FC<ProductProps> = ({ product }) => {
+const ProductCard: React.FC<ProductProps> = ({ product, refresh }: any) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -77,7 +78,7 @@ const ProductCard: React.FC<ProductProps> = ({ product }) => {
           justifyContent: 'center'
         }}>
 
-          <WishlistButton productId={product._id} />
+          <WishlistButton productId={product._id} refresh={refresh}/>
         </div>
         <CardMedia
           component="img"
